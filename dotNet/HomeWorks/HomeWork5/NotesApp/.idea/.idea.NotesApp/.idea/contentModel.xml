@@ -53,6 +53,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="NotesServiceTests.cs" t="Include" />
         <e p="NotesTests.csproj" t="IncludeRecursive" />
+        <e p="NumberGeneratorTests.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">
@@ -60,6 +61,8 @@
             </e>
           </e>
         </e>
+        <e p="ShortGuidTests.cs" t="Include" />
+        <e p="StringGeneratorTests.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>

@@ -9,20 +9,82 @@ namespace NotesTests
 {
     public class NotesServiceTests
     {
+        private readonly Mock<INotesStorage> _storageMoq;
+        private readonly Mock<INoteEvents> _eventMoq;
+        private readonly Note _testNote;
+        private readonly int _testUserId;
+        
+        public NotesServiceTests()
+        {
+            _storageMoq = new Mock<INotesStorage>();
+            _eventMoq = new Mock<INoteEvents>();
+            _testNote = new Note()
+            {
+                Id = Guid.NewGuid(),
+                Header = "header",
+                Body = "body"
+            };
+            _testUserId = 1;
+        }
+        
         [Fact]
         public void AddNote_MustThrow_ArgumentNullException_If_NoteIsNull()
         {
             var service = new NotesService(null, null);
-            Note note = null;
 
-            Assert.Throws<ArgumentNullException>(() => service.AddNote(note, 1));
+            Assert.Throws<ArgumentNullException>(() => service.AddNote(null, 1));
          }
 
         [Fact]
-        public void AddNote_()
+        public void AddNote_If_Arguments_IsCorrect_NoteEvent_MustCall_NotifyAdded()
         {
-            var storageMoq = new Mock<INotesStorage>();
+            var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
             
+            service.AddNote(_testNote, _testUserId);
+            
+            _eventMoq.Verify(x => x.NotifyAdded(_testNote, _testUserId), Times.Once);
+        }
+
+        [Fact]
+        public void AddNote_If_NotesStorage_ThrowException_NoteEvent_DontCall_NotifyAdded()
+        {
+            _storageMoq.Setup(x => x.AddNote(_testNote, _testUserId)).Throws<ArgumentException>();
+
+            var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
+            try
+            {
+                service.AddNote(_testNote, _testUserId);
+            }
+            catch
+            {
+                _eventMoq.Verify(x => x.NotifyAdded(_testNote, _testUserId), Times.Never);
+            }
+        }
+
+        [Fact]
+        public void DeleteNote_If_NotesStorage_DeletedNote_NoteEvent_Call_NotifyDeletedOnce()
+        {
+            _storageMoq.Setup(x => x.DeleteNote(_testNote.Id)).Returns(true);
+
+            var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
+            
+            service.DeleteNote(_testNote.Id, _testUserId);
+            
+            _eventMoq.Verify(x => x.NotifyDeleted(_testNote.Id, _testUserId), Times.Once);
+        }
+
+        [Fact]
+        public void DeleteNote_If_NotesStorage_DontDeletedNote_NoteEvent_Dont_Call_NotifyDeleted()
+        {
+            var guid = Guid.NewGuid();
+            var userId = 1;
+            _storageMoq.Setup(x => x.DeleteNote(guid)).Returns(false);
+
+            var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
+            
+            service.DeleteNote(guid, userId);
+            
+            _eventMoq.Verify(x => x.NotifyDeleted(guid, userId), Times.Never);
         }
     }
 }
