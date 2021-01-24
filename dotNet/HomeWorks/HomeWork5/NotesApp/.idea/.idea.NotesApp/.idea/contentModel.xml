@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Ivan Zherybor\.nuget\packages\microsoft.net.test.sdk\16.7.1\build\netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\Ivan Zherybor\.nuget\packages\microsoft.testplatform.testhost\16.7.1\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\Ivan Zherybor\.nuget\packages\microsoft.testplatform.testhost\16.7.1\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\Ivan Zherybor\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Ivan Zherybor\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Ivan Zherybor\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="C:\Users\Ivan Zherybor\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ivan Zherybor\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_NotesApp.40714507.00" t="ExcludeRecursive" />
+    <e p="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork5\NotesApp" t="IncludeFlat">
+      <e p="NotesApp.Services" t="IncludeRecursive">
+        <e p="Abstractions" t="Include">
+          <e p="INoteEvents.cs" t="Include" />
+          <e p="INotesService.cs" t="Include" />
+          <e p="INotesStorage.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="Note.cs" t="Include" />
+        </e>
+        <e p="NotesApp.Services.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="NotesApp.Services.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Services" t="Include">
+          <e p="NotesService.cs" t="Include" />
+        </e>
+      </e>
+      <e p="NotesApp.sln" t="IncludeFlat" />
+      <e p="NotesApp.Tools" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="NotesApp.Tools.csproj" t="IncludeRecursive" />
+        <e p="NumberGenerator.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="NotesApp.Tools.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ShortGuid.cs" t="Include" />
+        <e p="StringGenerator.cs" t="Include" />
+      </e>
+      <e p="NotesTests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="NotesServiceTests.cs" t="Include" />
+        <e p="NotesTests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="NotesTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
