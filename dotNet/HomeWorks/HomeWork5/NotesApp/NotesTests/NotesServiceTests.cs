@@ -30,7 +30,7 @@ namespace NotesTests
         [Fact]
         public void AddNote_MustThrow_ArgumentNullException_If_NoteIsNull()
         {
-            var service = new NotesService(null, null);
+            var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
 
             Assert.Throws<ArgumentNullException>(() => service.AddNote(null, 1));
          }
