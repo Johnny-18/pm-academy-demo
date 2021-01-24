@@ -32,7 +32,7 @@ namespace NotesTests
         {
             var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
 
-            Assert.Throws<ArgumentNullException>(() => service.AddNote(null, 1));
+            Assert.Throws<ArgumentNullException>(() => service.AddNote(null, _testUserId));
          }
 
         [Fact]
@@ -76,15 +76,13 @@ namespace NotesTests
         [Fact]
         public void DeleteNote_If_NotesStorage_DontDeletedNote_NoteEvent_Dont_Call_NotifyDeleted()
         {
-            var guid = Guid.NewGuid();
-            var userId = 1;
-            _storageMoq.Setup(x => x.DeleteNote(guid)).Returns(false);
+            _storageMoq.Setup(x => x.DeleteNote(_testNote.Id)).Returns(false);
 
             var service = new NotesService(_storageMoq.Object, _eventMoq.Object);
             
-            service.DeleteNote(guid, userId);
+            service.DeleteNote(_testNote.Id, _testUserId);
             
-            _eventMoq.Verify(x => x.NotifyDeleted(guid, userId), Times.Never);
+            _eventMoq.Verify(x => x.NotifyDeleted(_testNote.Id, _testUserId), Times.Never);
         }
     }
 }

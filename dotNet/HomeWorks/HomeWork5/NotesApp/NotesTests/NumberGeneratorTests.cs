@@ -22,10 +22,9 @@ namespace NotesTests
         [InlineData(8)]
         public void GeneratePositiveLong_Returns_Number_With_LengthFromArgument(int length)
         {
-            var expected = length;
             var actual = NumberGenerator.GeneratePositiveLong(length).ToString().Length;
             
-            Assert.Equal(expected, actual);
+            Assert.Equal(length, actual);
         }
     }
 }

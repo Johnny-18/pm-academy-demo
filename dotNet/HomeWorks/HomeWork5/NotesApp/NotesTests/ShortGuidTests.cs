@@ -16,33 +16,27 @@ namespace NotesTests
         [Fact]
         public void ToShortId_And_FromShortId_Correct_Convert_From_Guid_To_String_To_GuidBack()
         {
-            var expected = _guid;
-            
             var shortId = _guid.ToShortId();
             var actual = shortId.FromShortId();
             
-            Assert.Equal(expected, actual);
+            Assert.Equal(_guid, actual);
         }
 
         [Fact]
         public void ToShortId_And_FromShortId_If_ToResult_Of_ToShortId_AddTwoEquals_FromShortId_ShouldReturn_CorrectGuid() // two equal that means '=='
         {
-            var expected = _guid;
-
             var shortId = _guid.ToShortId();
             var actual = (shortId + "==").FromShortId();
             
-            Assert.Equal(expected, actual);
+            Assert.Equal(_guid, actual);
         }
 
         [Fact]
         public void FromShortId_Returns_CorrectGuid_FromGuid_ConvertedToString()
         {
-            var expected = _guid;
-
             var actual = _guid.ToString().FromShortId();
             
-            Assert.Equal(expected, actual);
+            Assert.Equal(_guid, actual);
         }
 
         [Fact]

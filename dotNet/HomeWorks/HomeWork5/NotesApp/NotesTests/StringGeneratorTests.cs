@@ -45,10 +45,9 @@ namespace NotesTests
         [InlineData(50, true)]
         public void GenerateNumbersString_Generate_String_And_StringLength_Equal_To_LengthFromArgument(int length, bool allowLeadingZero)
         {
-            var expected = length;
             var actual = StringGenerator.GenerateNumbersString(length, allowLeadingZero).Length;
             
-            Assert.Equal(expected, actual);
+            Assert.Equal(length, actual);
         }
 
         [Theory]
@@ -57,10 +56,10 @@ namespace NotesTests
         [InlineData(18, false)]
         public void GenerateNumbersString_ReturnsString_Should_Convert_To_Long(int length, bool allowLeadingZero)
         {
-            var str = StringGenerator.GenerateNumbersString(length, allowLeadingZero);
+            var generatedString = StringGenerator.GenerateNumbersString(length, allowLeadingZero);
 
             var expected = true;
-            var actual = long.TryParse(str, out var value);
+            var actual = long.TryParse(generatedString, out var value);
             
             Assert.Equal(expected, actual);
         }

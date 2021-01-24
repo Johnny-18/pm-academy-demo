@@ -14,10 +14,10 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/NotesTests/UnitTest1.cs" />
       <option value="$PROJECT_DIR$/NotesApp.Tools/StringGeneratorTests.cs" />
-      <option value="$PROJECT_DIR$/NotesTests/NumberGeneratorTests.cs" />
-      <option value="$PROJECT_DIR$/NotesTests/StringGeneratorTests.cs" />
-      <option value="$PROJECT_DIR$/NotesTests/ShortGuidTests.cs" />
       <option value="$PROJECT_DIR$/NotesTests/NotesServiceTests.cs" />
+      <option value="$PROJECT_DIR$/NotesTests/NumberGeneratorTests.cs" />
+      <option value="$PROJECT_DIR$/NotesTests/ShortGuidTests.cs" />
+      <option value="$PROJECT_DIR$/NotesTests/StringGeneratorTests.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nW6ZGymbwstX0qBf0G3s0drmF8" />
@@ -38,11 +38,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611493556653</updated>
-      <workItem from="1611493568108" duration="10934000" />
+      <workItem from="1611493568108" duration="11168000" />
+      <workItem from="1611518080915" duration="1048000" />
     </task>
     <servers />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
