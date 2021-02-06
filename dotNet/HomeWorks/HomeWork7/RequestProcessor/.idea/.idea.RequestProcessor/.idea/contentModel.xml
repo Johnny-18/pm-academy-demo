@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Ivan Zherybor\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ivan Zherybor\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_RequestProcessor.-1398333971.00" t="ExcludeRecursive" />
+    <e p="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="RequestProcessor.App" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Exceptions" t="Include">
+          <e p="PerformException.cs" t="Include" />
+        </e>
+        <e p="Logging" t="Include">
+          <e p="ILogger.cs" t="Include" />
+          <e p="Logger.cs" t="Include" />
+        </e>
+        <e p="Menu" t="Include">
+          <e p="IMainMenu.cs" t="Include" />
+          <e p="MainMenu.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="IRequestOptions.cs" t="Include" />
+          <e p="IResponse.cs" t="Include" />
+          <e p="IResponseOptions.cs" t="Include" />
+          <e p="RequestMethod.cs" t="Include" />
+          <e p="RequestOptions.cs" t="Include" />
+          <e p="Response.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="RequestProcessor.App.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="options.json" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="RequestProcessor.App.csproj" t="IncludeRecursive" />
+        <e p="Services" t="Include">
+          <e p="IOptionsSource.cs" t="Include" />
+          <e p="IRequestHandler.cs" t="Include" />
+          <e p="IRequestPerformer.cs" t="Include" />
+          <e p="IResponseHandler.cs" t="Include" />
+          <e p="OptionsSource.cs" t="Include" />
+          <e p="RequestHandler.cs" t="Include" />
+          <e p="RequestPerformer.cs" t="Include" />
+          <e p="ResponseHandler.cs" t="Include" />
+        </e>
+      </e>
+      <e p="RequestProcessor.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

@@ -4,7 +4,7 @@
     /// Request methods.
     /// Methods are projected to HTTP methods.
     /// </summary>
-    internal enum RequestMethod
+    public enum RequestMethod
     {
         Undefined = 0,
         Get = 1,

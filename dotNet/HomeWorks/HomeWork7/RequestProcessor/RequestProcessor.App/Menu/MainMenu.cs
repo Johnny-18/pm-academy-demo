@@ -10,6 +10,10 @@ namespace RequestProcessor.App.Menu
     /// </summary>
     internal class MainMenu : IMainMenu
     {
+        private readonly IRequestPerformer _performer;
+        private readonly IOptionsSource _options;
+        private readonly ILogger _logger;
+        
         /// <summary>
         /// Constructor with DI.
         /// </summary>
@@ -21,7 +25,9 @@ namespace RequestProcessor.App.Menu
             IOptionsSource options, 
             ILogger logger)
         {
-            throw new NotImplementedException();
+            _performer = performer;
+            _options = options;
+            _logger = logger;
         }
 
         public async Task<int> StartAsync()
