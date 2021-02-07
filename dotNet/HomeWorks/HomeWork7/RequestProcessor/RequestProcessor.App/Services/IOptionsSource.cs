@@ -13,6 +13,6 @@ namespace RequestProcessor.App.Services
         /// Provides request-response option pairs.
         /// </summary>
         /// <returns>Returns options enumeration.</returns>
-        Task<IEnumerable<RequestOptions>> GetOptionsAsync();
+        Task<IEnumerable<(IRequestOptions, IResponseOptions)>> GetOptionsAsync();
     }
 }

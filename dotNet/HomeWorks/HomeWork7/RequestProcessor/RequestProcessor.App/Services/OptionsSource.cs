@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using RequestProcessor.App.Models;
@@ -9,18 +10,23 @@ namespace RequestProcessor.App.Services
 {
     public class OptionsSource : IOptionsSource
     {
-        private string _path;
-        
-        public OptionsSource(string path)
-        {
-            _path = path;
-        }
-        
-        async Task<IEnumerable<RequestOptions>> IOptionsSource.GetOptionsAsync()
-        {
-            var jsonStrings = await File.ReadAllLinesAsync(_path);
+        // path to the file
+        private readonly string _path = "options.json";
 
-            return JsonSerializer.Deserialize<IEnumerable<RequestOptions>>(jsonStrings);
+        async Task<IEnumerable<(IRequestOptions, IResponseOptions)>> IOptionsSource.GetOptionsAsync()
+        {
+            try
+            {
+                await using var fs = new FileStream(_path, FileMode.Open, FileAccess.Read);
+                
+                var requestOptions = await JsonSerializer.DeserializeAsync<IEnumerable<RequestOptions>>(fs);
+
+                return requestOptions.Select(x => (x as IRequestOptions, x as IResponseOptions));;
+            }
+            catch (Exception)
+            {
+                return new List<(IRequestOptions, IResponseOptions)>();
+            }
         }
     }
 }

@@ -1,7 +1,13 @@
-﻿namespace RequestProcessor.App.Models
+﻿using System.Text.Json.Serialization;
+
+namespace RequestProcessor.App.Models
 {
     public class RequestOptions : IRequestOptions, IResponseOptions
     {
+        public RequestOptions()
+        {
+        }
+        
         public RequestOptions(string name, string address, string contentType, string body, string path, RequestMethod method)
         {
             Name = name;
@@ -12,18 +18,34 @@
             Method = method;
         }
 
-        public string Name { get; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
         
-        public string Address { get; }
+        [JsonPropertyName("address")]
+        public string Address { get; set; }
 
-        public RequestMethod Method { get; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonPropertyName("method")]
+        public RequestMethod Method { get; set; }
 
-        public string ContentType { get; }
+        [JsonPropertyName("contentType")]
+        public string ContentType { get; set; }
         
-        public string Body { get; }
+        [JsonPropertyName("body")]
+        public string Body { get; set; }
         
-        public string Path { get; }
+        [JsonPropertyName("path")]
+        public string Path { get; set; }
         
-        public bool IsValid { get; }
+        [JsonIgnore]
+        public bool IsValid {
+            get
+            {
+                if (string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(Path) || Method == RequestMethod.Undefined)
+                    return false;
+                
+                return true;
+            }
+        }
     }
 }

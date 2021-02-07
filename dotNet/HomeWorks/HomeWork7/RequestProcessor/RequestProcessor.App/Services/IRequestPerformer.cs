@@ -14,7 +14,7 @@ namespace RequestProcessor.App.Services
         /// Performs requests and manage response.
         /// </summary>
         /// <param name="requestOptions">Required request options.</param>
-        /// <param name="responseOptions">Required response options</param>
+        /// <param name="responseOptions">Required response options.</param>
         /// <returns>
         /// Returns <c>true</c> if request was successfully sent and response was stored.
         /// Returns <c>false</c> if request was sent, but response has some errors.
