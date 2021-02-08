@@ -42,22 +42,21 @@ namespace RequestProcessor.App.Menu
             var requestOptions = await _options.GetOptionsAsync();
             
             _logger.Log("File was read.");
-
             Console.WriteLine("Data from file was read!");
 
             try
             {
                 _logger.Log("Start sending messages.");
-                
+                Console.WriteLine("Sending requests to servers...");
+
                 //sending requests to servers
                 var tasks = requestOptions.Where(x => x.Item1.IsValid || x.Item2.IsValid)
                     .Select(x => _performer.PerformRequestAsync(x.Item1, x.Item2)).ToArray();
-                Console.WriteLine("Sending requests to servers...");
 
                 // waiting all tasks
                 await Task.WhenAll(tasks);
-                _logger.Log("End sending messages.");
                 
+                _logger.Log("End sending messages.");
                 Console.WriteLine("Requests was send and files was created!");
             }
             catch (ArgumentNullException e)

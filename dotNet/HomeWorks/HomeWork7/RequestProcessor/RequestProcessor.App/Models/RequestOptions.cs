@@ -7,16 +7,6 @@ namespace RequestProcessor.App.Models
         public RequestOptions()
         {
         }
-        
-        public RequestOptions(string name, string address, string contentType, string body, string path, RequestMethod method)
-        {
-            Name = name;
-            Address = address;
-            ContentType = contentType;
-            Body = body;
-            Path = path;
-            Method = method;
-        }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }

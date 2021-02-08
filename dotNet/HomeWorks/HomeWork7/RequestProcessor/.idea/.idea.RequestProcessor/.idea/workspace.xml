@@ -22,17 +22,17 @@
       <option value="$PROJECT_DIR$/RequestProcessor.App/Models/RequestMethod.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Logging/Logger.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Models/Response.cs" />
-      <option value="$PROJECT_DIR$/RequestProcessor.App/Models/RequestOptions.cs" />
-      <option value="$PROJECT_DIR$/RequestProcessor.App/Services/RequestHandler.cs" />
-      <option value="$PROJECT_DIR$/RequestProcessor.App/options.json" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Services/IOptionsSource.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Services/IRequestPerformer.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Services/IResponseHandler.cs" />
-      <option value="$PROJECT_DIR$/RequestProcessor.App/Services/ResponseHandler.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Program.cs" />
-      <option value="$PROJECT_DIR$/RequestProcessor.App/Services/OptionsSource.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Menu/MainMenu.cs" />
+      <option value="$PROJECT_DIR$/RequestProcessor.App/Models/RequestOptions.cs" />
+      <option value="$PROJECT_DIR$/RequestProcessor.App/Services/RequestHandler.cs" />
       <option value="$PROJECT_DIR$/RequestProcessor.App/Services/RequestPerformer.cs" />
+      <option value="$PROJECT_DIR$/RequestProcessor.App/Services/ResponseHandler.cs" />
+      <option value="$PROJECT_DIR$/RequestProcessor.App/Services/OptionsSource.cs" />
+      <option value="$PROJECT_DIR$/RequestProcessor.App/options.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1o3xfJXMcxtDsK7zncwOaUwVEDy" />
@@ -80,7 +80,7 @@
       <workItem from="1612597349798" duration="3700000" />
       <workItem from="1612635371688" duration="7547000" />
       <workItem from="1612685468156" duration="4582000" />
-      <workItem from="1612729763960" duration="10681000" />
+      <workItem from="1612729763960" duration="12094000" />
     </task>
     <servers />
   </component>
@@ -93,69 +93,30 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/RequestProcessor.App/Services/ResponseHandler.cs</url>
-          <line>17</line>
-          <properties documentPath="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor\RequestProcessor.App\Services\ResponseHandler.cs" initialLine="17" containingFunctionPresentation="method 'HandleResponseAsync'">
-            <startOffsets>
-              <option value="638" />
-            </startOffsets>
-            <endOffsets>
-              <option value="698" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/RequestProcessor.App/Services/RequestPerformer.cs</url>
-          <line>60</line>
-          <properties documentPath="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor\RequestProcessor.App\Services\RequestPerformer.cs" initialLine="58" containingFunctionPresentation="method 'PerformRequestAsync'">
-            <startOffsets>
-              <option value="2169" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2255" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/RequestProcessor.App/Services/RequestPerformer.cs</url>
-          <line>61</line>
-          <properties documentPath="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor\RequestProcessor.App\Services\RequestPerformer.cs" initialLine="59" containingFunctionPresentation="method 'PerformRequestAsync'">
-            <startOffsets>
-              <option value="2272" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2284" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/RequestProcessor.App/Services/RequestHandler.cs</url>
-          <line>28</line>
-          <properties documentPath="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor\RequestProcessor.App\Services\RequestHandler.cs" initialLine="28" containingFunctionPresentation="method 'HandleRequestAsync'">
-            <startOffsets>
-              <option value="956" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1067" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/RequestProcessor.App/Menu/MainMenu.cs</url>
           <line>43</line>
           <properties documentPath="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor\RequestProcessor.App\Menu\MainMenu.cs" initialLine="43" containingFunctionPresentation="method 'StartAsync'">
             <startOffsets>
-              <option value="1337" />
+              <option value="1338" />
             </startOffsets>
             <endOffsets>
-              <option value="1367" />
+              <option value="1368" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/RequestProcessor.App/Services/RequestPerformer.cs</url>
+          <line>37</line>
+          <properties documentPath="E:\Study\PM\pm-academy-demo\dotNet\HomeWorks\HomeWork7\RequestProcessor\RequestProcessor.App\Services\RequestPerformer.cs" initialLine="37" containingFunctionPresentation="method 'PerformRequestAsync'">
+            <startOffsets>
+              <option value="1271" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1298" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

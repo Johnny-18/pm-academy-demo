@@ -29,6 +29,12 @@ namespace RequestProcessor.App.Services
             return new Response(true, (int) responseMessage.StatusCode, await responseMessage.Content.ReadAsStringAsync());
         }
 
+        /// <summary>
+        /// Method mapping from our enum to System.Net.Http.HttpMethod value.
+        /// </summary>
+        /// <param name="method">Required request method for mapping.</param>
+        /// <returns>Our HttpMethod.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">If method is undefined.</exception>
         private HttpMethod MapMethods(RequestMethod method)
         {
             switch (method)

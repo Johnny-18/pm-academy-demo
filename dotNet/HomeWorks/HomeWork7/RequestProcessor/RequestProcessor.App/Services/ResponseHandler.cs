@@ -12,6 +12,7 @@ namespace RequestProcessor.App.Services
             if (response == null || requestOptions == null)
                 throw new ArgumentNullException();
             
+            // creating content to file
             var content = $"Status code: {response.Code}, handled: {response.Handled}" +
                           $"\n{response.Content}";
             

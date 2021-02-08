@@ -25,7 +25,7 @@ namespace RequestProcessor.App.Services
             }
             catch (Exception)
             {
-                return new List<(IRequestOptions, IResponseOptions)>();
+                return null;
             }
         }
     }

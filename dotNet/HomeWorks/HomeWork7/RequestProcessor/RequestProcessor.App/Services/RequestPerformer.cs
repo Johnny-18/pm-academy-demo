@@ -39,6 +39,8 @@ namespace RequestProcessor.App.Services
                 throw new ArgumentNullException(nameof(requestOptions));
             if (!requestOptions.IsValid)
                 throw new ArgumentOutOfRangeException(nameof(requestOptions));
+            if(!responseOptions.IsValid)
+                throw new ArgumentOutOfRangeException(nameof(responseOptions));
 
             try
             {
@@ -53,11 +55,12 @@ namespace RequestProcessor.App.Services
                 catch (TimeoutException e)
                 {
                     _logger.Log(e, e.Message);
+                    
                     response = new Response(false, (int) HttpStatusCode.RequestTimeout, "");
                 }
 
-
                 await _responseHandler.HandleResponseAsync(response, requestOptions, responseOptions);
+                
                 _logger.Log($"Save request to {responseOptions.Path}");
                 
                 return true;
