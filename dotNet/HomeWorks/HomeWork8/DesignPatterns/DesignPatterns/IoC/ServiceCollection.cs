@@ -28,7 +28,7 @@ namespace DesignPatterns.IoC
         public IServiceCollection AddTransient<T>(Func<T> factory)
         {
             if (factory == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(typeof(T).ToString());
             
             var type = typeof(T);
             var service = _services.FirstOrDefault(x => x.ServiceType == type);
@@ -48,7 +48,7 @@ namespace DesignPatterns.IoC
         public IServiceCollection AddTransient<T>(Func<IServiceProvider, T> factory)
         {
             if (factory == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(typeof(T).ToString());
             
             var type = typeof(T);
             var service = _services.FirstOrDefault(x => x.ServiceType == type);
@@ -125,7 +125,7 @@ namespace DesignPatterns.IoC
         public IServiceCollection AddSingleton<T>(Func<IServiceProvider, T> factory)
         {
             if (factory == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(typeof(T).ToString());
             
             var type = typeof(T);
             var service = _services.FirstOrDefault(x => x.ServiceType == type);
