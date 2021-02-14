@@ -1,43 +1,86 @@
+using System;
+
 namespace DesignPatterns.Builder
 {
     public class CustomStringBuilder : ICustomStringBuilder
     {
+        private char[] _charArray;
+
+        public int Capacity { get; private set; }
+
         public CustomStringBuilder()
         {
+            Capacity = 0;
+            _charArray = new char[Capacity];
         }
 
         public CustomStringBuilder(string text)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                Capacity = 0;
+                _charArray = new char[Capacity];
+            }
+            else
+            {
+                Capacity = text.Length;
+                _charArray = new char[Capacity];
+                Array.Copy(text.ToCharArray(), _charArray, Capacity);
+            }
         }
 
         public ICustomStringBuilder Append(string str)
         {
-            throw new System.NotImplementedException();
+            var length = Capacity;
+            Capacity += str.Length;
+            
+            Array.Resize(ref _charArray, Capacity);
+            
+            Array.Copy(str.ToCharArray(), 0, _charArray, length, str.Length);
+            
+            return this;
         }
 
         public ICustomStringBuilder Append(char ch)
         {
-            throw new System.NotImplementedException();
+            Capacity++;
+            
+            Array.Resize(ref _charArray, Capacity);
+            
+            _charArray[Capacity - 1] = ch;
+
+            return this;
         }
 
         public ICustomStringBuilder AppendLine()
         {
-            throw new System.NotImplementedException();
+            return Append('\n');
         }
 
         public ICustomStringBuilder AppendLine(string str)
         {
-            throw new System.NotImplementedException();
+            AppendLine();
+            Append(str);
+            return AppendLine();
         }
 
         public ICustomStringBuilder AppendLine(char ch)
         {
-            throw new System.NotImplementedException();
+            AppendLine();
+            return Append(ch);
         }
 
         public string Build()
         {
-            throw new System.NotImplementedException();
+            if (Capacity == 0)
+                return string.Empty;
+            
+            var result = new string(_charArray);
+
+            _charArray = new char[0];
+            Capacity = 0;
+            
+            return result;
         }
     }
 }
