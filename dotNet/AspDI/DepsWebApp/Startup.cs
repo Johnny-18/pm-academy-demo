@@ -2,14 +2,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO;
 using DepsWebApp.Clients;
 using DepsWebApp.Options;
 using DepsWebApp.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace DepsWebApp
 {
+#pragma warning disable 1591
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -42,6 +46,11 @@ namespace DepsWebApp
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DI Demo App API", Version = "v1" });
+                var filePath = Path.Combine(AppContext.BaseDirectory, "DepsWebApp.xml");
+                if (File.Exists(filePath))
+                {
+                    c.IncludeXmlComments(filePath);
+                }
             });
 
             // Add batch of framework services
@@ -51,11 +60,15 @@ namespace DepsWebApp
 
         // This method gets called by the runtime.
         // Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DI Demo App API v1"));
-
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DI Demo App API v1"));
+            }
+            
             app.UseRouting();
 
             app.UseAuthorization();
@@ -66,4 +79,5 @@ namespace DepsWebApp
             });
         }
     }
+#pragma warning restore 1591
 }

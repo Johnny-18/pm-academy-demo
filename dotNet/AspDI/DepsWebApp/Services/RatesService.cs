@@ -9,6 +9,9 @@ using Microsoft.Extensions.Options;
 
 namespace DepsWebApp.Services
 {
+    /// <summary>
+    /// Service for ratess
+    /// </summary>
     public class RatesService : IRatesService
     {
         private const string RatesCacheKey = "rates";
@@ -20,6 +23,10 @@ namespace DepsWebApp.Services
         private readonly string _baseCurrency;
         private readonly CacheOptions _cacheOptions;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">If some of arguments is null</exception>
         public RatesService(
             IRatesProviderClient client, 
             IMemoryCache cache,
@@ -38,6 +45,7 @@ namespace DepsWebApp.Services
                 throw new ArgumentOutOfRangeException(nameof(cacheOptions), "Options are invalid");
         }
 
+        /// <inheritdoc />
         public async Task<ExchangeResult?> ExchangeAsync(string srcCurrency, string destCurrency, decimal amount)
         {
             var comparer = StringComparer.Ordinal;
@@ -83,6 +91,7 @@ namespace DepsWebApp.Services
             });
         }
 
+        /// <inheritdoc />
         public Task ActualizeRatesAsync()
         {
             _cache.Remove(RatesCacheKey);

@@ -6,16 +6,27 @@ using Microsoft.Extensions.Hosting;
 
 namespace DepsWebApp.Services
 {
+    /// <summary>
+    /// Service for cache hosted
+    /// </summary>
     public class CacheHostedService : IHostedService
     {
         private readonly IServiceScopeFactory _scopeFactory;
         private Timer _cacheTimer;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="scopeFactory"></param>
         public CacheHostedService(IServiceScopeFactory scopeFactory)
         {
             _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
         }
-
+        
+        /// <summary>
+        /// Method started timer every day for creating scope and rates service
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token for task</param>
         public Task StartAsync(CancellationToken cancellationToken)
         {
             var now = DateTime.UtcNow;
@@ -37,6 +48,10 @@ namespace DepsWebApp.Services
             rates.ActualizeRatesAsync().GetAwaiter().GetResult();
         }
 
+        /// <summary>
+        /// Method for stop timer
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token for task</param>
         public Task StopAsync(CancellationToken cancellationToken)
         {
             _cacheTimer?.Dispose();
