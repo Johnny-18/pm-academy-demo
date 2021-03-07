@@ -4,11 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
 using DepsWebApp.Clients;
+using DepsWebApp.MIddleware;
 using DepsWebApp.Options;
 using DepsWebApp.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
+using Microsoft.IO;
 using Microsoft.OpenApi.Models;
 
 namespace DepsWebApp
@@ -62,6 +64,7 @@ namespace DepsWebApp
         // Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -72,6 +75,37 @@ namespace DepsWebApp
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.Use(async (context, next) =>
+            {
+                var logger = context.RequestServices.GetService<ILogger<Startup>>();
+                var recyclableMemoryStreamManager = new RecyclableMemoryStreamManager();
+
+                var requestBody = await ObtainBodyMiddleware.ObtainRequestBody(context.Request);
+                if (string.IsNullOrEmpty(requestBody))
+                {
+                    requestBody = "The request body is empty or null!";
+                }
+                
+                logger.Log(LogLevel.Information, $"Body request: {requestBody}");
+
+                var originalBodyStream = context.Response.Body;
+                
+                await using var responseBodyStream = recyclableMemoryStreamManager.GetStream();
+                context.Response.Body = responseBodyStream;
+
+                await next.Invoke();
+
+                var responseBody = await ObtainBodyMiddleware.ObtainResponseBody(context);
+                if (string.IsNullOrEmpty(responseBody))
+                {
+                    responseBody = "The response body is empty or null!";
+                }
+
+                logger.Log(LogLevel.Information, $"Body response: {responseBody}");
+
+                await responseBodyStream.CopyToAsync(originalBodyStream);
+            });
 
             app.UseEndpoints(endpoints =>
             {

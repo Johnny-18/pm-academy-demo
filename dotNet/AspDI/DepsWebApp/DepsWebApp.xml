@@ -102,6 +102,25 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="T:DepsWebApp.MIddleware.ObtainBodyMiddleware">
+            <summary>
+            Middleware for obtain body from request and response
+            </summary>
+        </member>
+        <member name="M:DepsWebApp.MIddleware.ObtainBodyMiddleware.ObtainRequestBody(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Method for obtain request body
+            </summary>
+            <param name="request">Http context</param>
+            <returns>Request body</returns>
+        </member>
+        <member name="M:DepsWebApp.MIddleware.ObtainBodyMiddleware.ObtainResponseBody(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Method for obtain request body
+            </summary>
+            <param name="context">Http context</param>
+            <returns>Response body</returns>
+        </member>
         <member name="T:DepsWebApp.Models.CurrencyRate">
             <summary>
             Currency rate model.

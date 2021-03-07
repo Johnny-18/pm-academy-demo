@@ -1,0 +1,5 @@
+﻿{
+  "baseAddress": "http://localhost:5000",
+  "ratesApi": "rates",
+  "authApi": "auth"
+}
