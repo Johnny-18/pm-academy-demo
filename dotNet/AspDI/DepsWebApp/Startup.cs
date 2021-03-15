@@ -3,10 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using DepsWebApp.Authentication;
 using DepsWebApp.Clients;
 using DepsWebApp.MIddleware;
 using DepsWebApp.Options;
 using DepsWebApp.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -36,6 +38,7 @@ namespace DepsWebApp
             
             // Add application services
             services.AddScoped<IRatesService, RatesService>();
+            services.AddSingleton<IUserService, UserServiceInMemory>();
 
             // Add NbuClient as Transient
             services.AddHttpClient<IRatesProviderClient, NbuClient>()
@@ -54,6 +57,9 @@ namespace DepsWebApp
                     c.IncludeXmlComments(filePath);
                 }
             });
+            
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, AuthSchemaHandler>("BasicAuthentication", null);
 
             // Add batch of framework services
             services.AddMemoryCache();
@@ -74,38 +80,8 @@ namespace DepsWebApp
             
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-            
-            app.Use(async (context, next) =>
-            {
-                var logger = context.RequestServices.GetService<ILogger<Startup>>();
-                var recyclableMemoryStreamManager = new RecyclableMemoryStreamManager();
-
-                var requestBody = await ObtainBodyMiddleware.ObtainRequestBody(context.Request);
-                if (string.IsNullOrEmpty(requestBody))
-                {
-                    requestBody = "The request body is empty or null!";
-                }
-                
-                logger.Log(LogLevel.Information, $"Body request: {requestBody}");
-
-                var originalBodyStream = context.Response.Body;
-                
-                await using var responseBodyStream = recyclableMemoryStreamManager.GetStream();
-                context.Response.Body = responseBodyStream;
-
-                await next.Invoke();
-
-                var responseBody = await ObtainBodyMiddleware.ObtainResponseBody(context);
-                if (string.IsNullOrEmpty(responseBody))
-                {
-                    responseBody = "The response body is empty or null!";
-                }
-
-                logger.Log(LogLevel.Information, $"Body response: {responseBody}");
-
-                await responseBodyStream.CopyToAsync(originalBodyStream);
-            });
 
             app.UseEndpoints(endpoints =>
             {

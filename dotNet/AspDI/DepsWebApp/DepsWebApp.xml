@@ -4,6 +4,27 @@
         <name>DepsWebApp</name>
     </assembly>
     <members>
+        <member name="T:DepsWebApp.Authentication.AuthSchemaHandler">
+            <summary>
+            Custom auth handler for schema
+            </summary>
+        </member>
+        <member name="M:DepsWebApp.Authentication.AuthSchemaHandler.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.Text.Encodings.Web.UrlEncoder,Microsoft.AspNetCore.Authentication.ISystemClock,DepsWebApp.Services.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="options">Schema options</param>
+            <param name="logger">Logger</param>
+            <param name="encoder">Encoder</param>
+            <param name="clock">System clock</param>
+            <param name="userService">User service</param>
+        </member>
+        <member name="M:DepsWebApp.Authentication.AuthSchemaHandler.HandleAuthenticateAsync">
+            <summary>
+            Method for handling auth request
+            </summary>
+            <returns>Authenticate result, no result if user not found or header is incorrect, success if all is good</returns>
+        </member>
         <member name="T:DepsWebApp.Clients.IRatesProviderClient">
             <summary>
             Abstract currency rates provider interface.
@@ -45,32 +66,49 @@
             Currency code.
             </summary>
         </member>
-        <member name="T:DepsWebApp.Contracts.UserForRegister">
+        <member name="T:DepsWebApp.Contracts.User">
             <summary>
             User model for register
             </summary>
         </member>
-        <member name="P:DepsWebApp.Contracts.UserForRegister.Login">
+        <member name="P:DepsWebApp.Contracts.User.Login">
             <summary>
             User login
             </summary>
         </member>
-        <member name="P:DepsWebApp.Contracts.UserForRegister.Password">
+        <member name="P:DepsWebApp.Contracts.User.Password">
             <summary>
             User password
             </summary>
+        </member>
+        <member name="M:DepsWebApp.Contracts.User.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DepsWebApp.Contracts.User.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="login">User login</param>
+            <param name="password">User password</param>
         </member>
         <member name="T:DepsWebApp.Controllers.AuthController">
             <summary>
             Controller for registration user
             </summary>
         </member>
-        <member name="M:DepsWebApp.Controllers.AuthController.Register(DepsWebApp.Contracts.UserForRegister)">
+        <member name="M:DepsWebApp.Controllers.AuthController.#ctor(DepsWebApp.Services.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="userService">User service</param>
+        </member>
+        <member name="M:DepsWebApp.Controllers.AuthController.Register(DepsWebApp.Contracts.User)">
             <summary>
             Post request for register user
             </summary>
             <param name="user">User for register</param>
-            <exception cref="T:System.NotImplementedException">Method need implementation</exception>
         </member>
         <member name="T:DepsWebApp.Controllers.RatesController">
             <summary>
@@ -263,6 +301,28 @@
             </summary>
             <returns>Returns awaiter</returns>
         </member>
+        <member name="T:DepsWebApp.Services.IUserService">
+            <summary>
+            Account service
+            </summary>
+        </member>
+        <member name="M:DepsWebApp.Services.IUserService.RegisterAsync(System.String,System.String)">
+            <summary>
+            Register user
+            </summary>
+            <param name="login">User login</param>
+            <param name="password">User password</param>
+            <returns>Return user account or null if login already taken</returns>
+            <exception cref="T:System.ArgumentNullException">Throws when one of the arguments is null</exception>
+        </member>
+        <member name="M:DepsWebApp.Services.IUserService.GetUser(System.String,System.String)">
+            <summary>
+            Get user by login
+            </summary>
+            <param name="login">User login</param>
+            <param name="password">User password</param>
+            <returns>User or null if not found</returns>
+        </member>
         <member name="T:DepsWebApp.Services.RatesService">
             <summary>
             Service for ratess
@@ -278,6 +338,17 @@
             <inheritdoc />
         </member>
         <member name="M:DepsWebApp.Services.RatesService.ActualizeRatesAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:DepsWebApp.Services.UserServiceInMemory">
+            <summary>
+            Implements <see cref="T:DepsWebApp.Services.IUserService"/>>
+            </summary>
+        </member>
+        <member name="M:DepsWebApp.Services.UserServiceInMemory.RegisterAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:DepsWebApp.Services.UserServiceInMemory.GetUser(System.String,System.String)">
             <inheritdoc />
         </member>
     </members>

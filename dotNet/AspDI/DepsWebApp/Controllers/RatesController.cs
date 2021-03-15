@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using DepsWebApp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DepsWebApp.Controllers
 {
@@ -10,6 +11,7 @@ namespace DepsWebApp.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class RatesController : ControllerBase
     {
         private readonly ILogger<RatesController> _logger;

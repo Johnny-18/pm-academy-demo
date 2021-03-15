@@ -14,7 +14,7 @@ namespace DepsWebApp.Tests
         {
             var client = new HttpClient();
 
-            var json = File.ReadAllText(Path);
+            var json = await File.ReadAllTextAsync(Path);
             var settings = JsonSerializer.Deserialize<Settings>(json);
             if (settings == null)
             {
@@ -22,14 +22,16 @@ namespace DepsWebApp.Tests
                 return;
             }
 
-            var ratesTests = new RatesTests(client, settings.BaseAddress + "/" + settings.RatesApi);
+            var ratesTests = new RatesTests(client, settings);
             var registerTests = new RegisterTests(client, settings.BaseAddress + "/" + settings.AuthApi);
+            
+            await registerTests.Register_WasCorrect_UserName_And_Password_Must_Be_StatusCodeOk();
+            await registerTests.Register_WasIncorrect_UserName_And_Password_Length_LessThenSix_Must_Be_StatusCodeOk();
+            await registerTests.Register_WasIncorrect_UserName_And_Password_Must_Be_StatusCodeOk();
 
             await ratesTests.Rates_ConvertFrom_EUR_To_USD_MustBe_StatusCode_Ok();
             await ratesTests.Rates_ConvertFrom_ASD_To_USD_MustBe_StatusCode_BadRequest();
-
-            await registerTests.Register_WasCorrect_UserName_And_Password_Must_Be_StatusCodeOk();
-            await registerTests.Register_WasIncorrect_UserName_And_Password_Must_Be_StatusCodeOk();
+            await ratesTests.Rates_ConvertFrom_ASD_To_USD_MustBe_StatusCode_Unauthorized();
         }
     }
 }

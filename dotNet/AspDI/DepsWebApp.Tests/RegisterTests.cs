@@ -21,8 +21,8 @@ namespace DepsWebApp.Tests
         {
             var jsonBody = JsonSerializer.Serialize(new
             {
-                UserName = "userName",
-                Password = "password"
+                Login = "string",
+                Password = "string"
             });
 
             var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
@@ -49,7 +49,7 @@ namespace DepsWebApp.Tests
         {
             var jsonBody = JsonSerializer.Serialize(new
             {
-                UserName = "",
+                Login = "",
                 Password = ""
             });
 
@@ -62,7 +62,35 @@ namespace DepsWebApp.Tests
             {
                 var response = await _client.PostAsync(url, content);
 
-                var expected = "status code 200";
+                var expected = "status code 400";
+                var actual = $"status code {(int)response.StatusCode}";
+
+                PrintResult(expected, actual);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Something wrong with client!");
+            }
+        }
+        
+        public async Task Register_WasIncorrect_UserName_And_Password_Length_LessThenSix_Must_Be_StatusCodeOk()
+        {
+            var jsonBody = JsonSerializer.Serialize(new
+            {
+                Login = "qwe",
+                Password = "qwe"
+            });
+
+            var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+            
+            var url = _address + "/register";
+
+            Console.WriteLine($"Sending request to {url} with body {jsonBody}");
+            try
+            {
+                var response = await _client.PostAsync(url, content);
+
+                var expected = "status code 400";
                 var actual = $"status code {(int)response.StatusCode}";
 
                 PrintResult(expected, actual);

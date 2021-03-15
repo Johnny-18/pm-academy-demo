@@ -1,6 +1,7 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using DepsWebApp.Contracts;
 using DepsWebApp.Filters;
+using DepsWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepsWebApp.Controllers
@@ -12,16 +13,39 @@ namespace DepsWebApp.Controllers
     [Route("auth")]
     public class AuthController : ControllerBase
     {
+        private readonly IUserService _userService;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="userService">User service</param>
+        public AuthController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         /// <summary>
         /// Post request for register user
         /// </summary>
         /// <param name="user">User for register</param>
-        /// <exception cref="NotImplementedException">Method need implementation</exception>
         [HttpPost("register")]
         [TypeFilter(typeof(ExceptionFilter))]
-        public ActionResult Register([FromBody] UserForRegister user)
+        public async Task<ActionResult> Register([FromBody] User user)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid == false)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (await _userService.GetUser(user.Login, user.Password) != null)
+                return BadRequest();
+
+            if (await _userService.RegisterAsync(user.Login, user.Password))
+            {
+                return Ok();
+            }
+            
+            return BadRequest();
         }
     }
 }
