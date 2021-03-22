@@ -1,8 +1,9 @@
 ﻿using System;
 using DepsWebApp.Contracts;
+using DepsWebApp.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace DepsWebApp.Services
+namespace DepsWebApp.Context
 {
     /// <summary>
     /// Implements <see cref="IUserService"/>>

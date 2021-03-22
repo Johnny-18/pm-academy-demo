@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using DepsWebApp.Authentication;
 using DepsWebApp.Clients;
+using DepsWebApp.Context;
 using DepsWebApp.Options;
 using DepsWebApp.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -28,6 +29,8 @@ namespace DepsWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHostedService<MigrationService>();
+            
             // Add options
             services
                 .Configure<CacheOptions>(Configuration.GetSection("Cache"))
