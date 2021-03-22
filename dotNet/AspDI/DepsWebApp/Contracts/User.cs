@@ -11,6 +11,7 @@ namespace DepsWebApp.Contracts
         /// <summary>
         /// User login
         /// </summary>
+        [Key]
         [JsonPropertyName("login")]
         [MinLength(6)]
         public string Login { get; set; }

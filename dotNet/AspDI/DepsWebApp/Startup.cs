@@ -5,14 +5,12 @@ using System;
 using System.IO;
 using DepsWebApp.Authentication;
 using DepsWebApp.Clients;
-using DepsWebApp.MIddleware;
 using DepsWebApp.Options;
 using DepsWebApp.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IO;
 using Microsoft.OpenApi.Models;
 
 namespace DepsWebApp
@@ -38,7 +36,12 @@ namespace DepsWebApp
             
             // Add application services
             services.AddScoped<IRatesService, RatesService>();
-            services.AddSingleton<IUserService, UserServiceInMemory>();
+            
+            services.AddDbContext<UserContext>(
+                options => options.UseNpgsql(Configuration.GetConnectionString("UserContext")),
+                ServiceLifetime.Transient);
+            
+            services.AddTransient<IUserService, UserService>();
 
             // Add NbuClient as Transient
             services.AddHttpClient<IRatesProviderClient, NbuClient>()

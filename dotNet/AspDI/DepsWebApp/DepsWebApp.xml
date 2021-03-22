@@ -340,15 +340,49 @@
         <member name="M:DepsWebApp.Services.RatesService.ActualizeRatesAsync">
             <inheritdoc />
         </member>
-        <member name="T:DepsWebApp.Services.UserServiceInMemory">
+        <member name="T:DepsWebApp.Services.UserContext">
             <summary>
             Implements <see cref="T:DepsWebApp.Services.IUserService"/>>
             </summary>
         </member>
-        <member name="M:DepsWebApp.Services.UserServiceInMemory.RegisterAsync(System.String,System.String)">
-            <inheritdoc />
+        <member name="P:DepsWebApp.Services.UserContext.Users">
+            <summary>
+            Users
+            </summary>
         </member>
-        <member name="M:DepsWebApp.Services.UserServiceInMemory.GetUser(System.String,System.String)">
+        <member name="M:DepsWebApp.Services.UserContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{DepsWebApp.Services.UserContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="options">Database context options</param>
+        </member>
+        <member name="M:DepsWebApp.Services.UserContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Configuring
+            </summary>
+            <param name="optionsBuilder">Option builder</param>
+        </member>
+        <member name="T:DepsWebApp.Services.UserService">
+            <summary>
+            User service
+            </summary>
+        </member>
+        <member name="M:DepsWebApp.Services.UserService.#ctor(DepsWebApp.Services.UserContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:DepsWebApp.Services.UserService.RegisterAsync(System.String,System.String)">
+            <summary>
+            Method for register
+            </summary>
+            <param name="login">User login</param>
+            <param name="password">User password</param>
+            <returns>Bool value, true id registered, another - false</returns>
+            <exception cref="T:System.ArgumentNullException">When some arguments is null</exception>
+        </member>
+        <member name="M:DepsWebApp.Services.UserService.GetUser(System.String,System.String)">
             <inheritdoc />
         </member>
     </members>
